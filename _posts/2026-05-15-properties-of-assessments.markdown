@@ -1,0 +1,106 @@
+---
+layout: post
+title:  "Properties of Assessments"
+date:   2026-05-15 12:00:00 -0800
+categories: jekyll update
+---
+
+Google’s privacy and compliance assessments and processes evolved considerably over my time there.
+I was responsible for responding to one of Google’s first privacy assessment requests, and I helped
+to refine the latest versions of the process prior to my departure. These are some of my reflections
+on what makes for a good assessment framework.
+
+## Collect information if (and only if) it...
+
+### ...drives decisions
+Information in the assessment you’re collecting should be necessary and sufficient to enable
+informed decisions about the system being assessed.
+
+### ...is relevant to the system being assessed
+
+Some examples:
+
+* An assessment that’s designed for a user-facing product may include questions that aren’t relevant to
+back-end/infrastructure systems, and vice versa.
+    * Back end systems may not need to detail their notice/consent stories, because they don’t usually
+interact directly with users.
+    * Front end systems that depend on infrastructure to handle automated data deletion should not have to
+document the details of that infrastructure’s operation.
+* If your organization is introducing widespread use of LLMs, your assessment may now need to (at least) identify the models being used, and the contexts in which they’re used.
+
+### ...relates to a documented need
+
+Each element of an assessment should connect to a documented policy that describes what’s needed, and why. System owners are generally happier about answering questions if they’re backed by a policy that's easy to understand.
+
+Such documentation also makes it easier for people performing the assessments to make sure they’re getting what’s needed (and not collecting what isn’t).
+
+### ...is unique
+
+System assessment can be a frustrating process for the owners of the system. A common source of frustration is being asked to repeatedly provide the same, or similar, information. Opportunities include:
+
+* As assessment needs and formats evolve, make sure that information in existing assessments is maintained and migrated.
+* Where different assessing organizations (privacy, security, compliance, etc.) have overlapping needs, those organizations should collaborate to avoid redundancy by combining assessments, or making use of each others’ assessment data.
+
+## Collection should be…
+
+### ...minimum effort
+
+In decreasing order of preference, assessment information collection should be
+
+1. **automatic**
+* example: programmatically checking whether all data in a repository are encrypted
+1. **self-explanatory** (person completing the assessment can do so without needing to read additional documentation)
+* example: “click here to run the encryption checker, and copy/paste its output here”
+1. **quick and easy** to complete with supplied documentation
+* example: “follow these instructions to run the encryption checker and report results”
+1. **straightforward** to complete with supplied documentation
+* example: “follow these instructions to install, configure, and run the encryption checker, extract the results from the database that it creates, and update the linked spreadsheet with the results”
+1. **complex** (requiring analysis, research, and/or clarifying discussion)
+* example: respondent must figure out what files are in scope, find a way to check encryption status, and understand what results should be reported
+
+"Can this be automated?" is a good first question; "can it be [better] documented and simplified?" is a good follow-up if the first answer is "no".
+
+You may never get to the point for a given assessment framework where all questions are answerable in bite-sized chunks, but it’s a good aspiration.
+
+### ...timely
+
+Assessment questions should be asked as soon as they can be answered (and the answers acted on), but no sooner.
+
+### ...informed by prior findings
+
+If it’s generated as part of the assessment process, and it’s important, write it down so that future assessments can make use of it. Some examples:
+
+* If an assessment results in an agreement for future behavior of the system, recording that agreement explicitly as part of the assessment can avoid re-litigating it later, and helps to ensure that all parties share an understanding of its provisions.
+* In general, mature organizations should rely on individuals’ memories as little as possible: memories fade, and people move on to other roles or organizations.
+
+### ...scoped
+
+* The system being assessed (and thus the boundaries of what needs assessment) should be clearly defined, including how it connects/relates to other systems.
+
+## Collected information should be...
+
+### ...searchable/discoverable
+
+If the information is worth recording, it’s worth making it findable. (Recording the information in a structured format can be helpful.)
+
+### ...shown (only) when helpful
+
+Not all collected information needs to be presented to all viewers in all contexts. If an assessment has multiple audiences or use cases, this may also imply that it should have multiple views.
+
+### ...interpretable
+
+"Self-explanatory" is better than "well-documented", and "well-documented" is better than "not documented" or "requires expert interpretation".
+
+### ...verifiable
+
+It should be possible to tell whether the assertions included in an assessment are accurate. This requires that they be precise and checkable.
+
+### ...self-maintaining
+
+It’s generally better for an assessment to link to the source of truth for any extracted information than to include a copy of that information; copies can easily fall out of date.
+
+### ...self-contained
+
+It shouldn’t be necessary to track down several different sources (issue trackers, design documents, assessments, email/chat transcripts) in order to have the full state of the assessment.
+
+An assessment should include a reference to the time at which it was completed.
