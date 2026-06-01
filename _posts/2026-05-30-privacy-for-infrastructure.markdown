@@ -59,6 +59,12 @@ Infrastructure may also perform data governance functions on behalf of its clien
 
 It’s important for infrastructure to document any data governance roles it may have, so that clients know what they can, and can’t, depend on infrastructure to handle for them.
 
+**what can possibly go wrong**
+
+* Serving infrastructure builds a model from client data to make serving more efficient; as a side effect, it predicts user behavior for clients that have user data.  The ads team gets access to this model, and starts using it for ads targeting, in contravention of the purpose limitations for this data.  Lawyers ensue.
+* Data processing infrastructure does not propagate annotations of data that pass through it from its inputs to its outputs.  This creates a hole in the affected clients’ data governance that they can’t easily patch.
+
+
 ### access control
 
 Infrastructure generally should not allow clients to access each others’ data; setting up per-client access controls should be part of onboarding.
@@ -70,6 +76,11 @@ Infrastructure that stores or serves client data may have internal access paths 
 
 Infrastructure that’s responsible for the fundamental building blocks of access control (e.g. cryptography, authentication/authorization checks, identity and access management) should be among the most carefully scrutinized.  Security review should catch most problems in this area, but their evaluation of risks may be different than privacy’s, and any integrations with data governance are likely to be more in privacy’s wheelhouse.
 
+**what can possibly go wrong**
+
+* Infrastructure team leaves access to their internal logs open to all of their clients. One client snoops on other clients’ logs, uses this for business advantage, and then a whistleblower in that client’s organization tells the media what happened and where the data came from.  Lawyers ensue.
+
+
 ### retention/deletion, data export, data updating
 
 Storage infrastructure that handles privacy-relevant data should either support these functions automatically, or provide client APIs for them.  Otherwise the infrastructure team would need to handle such requests manually.
@@ -77,6 +88,11 @@ Storage infrastructure that handles privacy-relevant data should either support 
 Since these functions (especially full deletion) can take time, infrastructure should document any propagation delays that their system may introduce.
 
 All of this applies to primary data stores, caches, and backups.
+
+**what can possibly go wrong**
+
+* Infrastructure neither handles data export for its clients, nor empowers its clients to handle it.  All export requests (whether from users or in response to legal requests) have to be handled manually by the infrastructure team.
+* Infrastructure team decides to add a new backup system that covers all client data, and decides to keep backups around indefinitely because storage is cheap and they want to help their clients recover their data.  This places them out of compliance with retention deadlines for clients that handle privacy-relevant data.  Lawyers ensue.
 
 ### notice, consent, control
 
@@ -89,6 +105,11 @@ These don’t generally apply directly to infrastructure directly, but the infra
 ### aggregating and obscuring data
 
 This includes anonymization, pseudonymization, redaction, deidentification, and generating summary statistics.  As with access control mechanisms, these are both important to do consistently across your organization, and easy to do in a way that introduces subtle vulnerabilities, so ideally infrastructure will provide common solutions.
+
+**what can possibly go wrong**
+
+* Infrastructure does not provide an anonymization solution.  Clients use a mixture of strategies (mostly redaction) in an attempt to obscure the identities of their users; this makes data governance difficult and inconsistent across the organization.  A data scientist pulls together data from different clients and uses it to reidentify many users.
+
 
 ## Configuration
 
