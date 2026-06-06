@@ -10,13 +10,34 @@ I was responsible for responding to one of Google’s first privacy assessment r
 to refine the latest versions of the process prior to my departure. These are some of my reflections
 on what makes for a good assessment framework.
 
-## Collect information if (and only if) it...
+Summarizing:
 
-### ...drives decisions
+* Collect information if (and only if) it is
+    * **actionable**
+    * **relevant**
+    * **policy-driven**
+    * **unique**
+* Collection should be
+    * **minimum effort**
+    * **timely**
+    * **informed** by prior findings
+    * **scoped**
+* Collected information should be
+    * **searchable**
+    * **audience-appropriate**
+    * **interpretable**
+    * **verifiable**
+    * **self-maintaining**
+    * **self-contained**
+
+## Collect information if (and only if) it is...
+
+### ...actionable
+
 Information in the assessment you’re collecting should be necessary and sufficient to enable
 informed decisions about the system being assessed.
 
-### ...is relevant to the system being assessed
+### ...relevant
 
 Some examples:
 
@@ -28,20 +49,20 @@ interact directly with users.
 document the details of that infrastructure’s operation.
 * If your organization is introducing widespread use of LLMs, your assessment may now need to (at least) identify the models being used, and the contexts in which they’re used.
 
-### ...relates to a documented need
+### ...policy-driven
 
 Each element of an assessment should connect to a documented policy that describes what’s needed, and why. System owners are generally happier about answering questions if they’re backed by a policy that's easy to understand.
 
 Such documentation also makes it easier for people performing the assessments to make sure they’re getting what’s needed (and not collecting what isn’t).
 
-### ...is unique
+### ...unique
 
 System assessment can be a frustrating process for the owners of the system. A common source of frustration is being asked to repeatedly provide the same, or similar, information. Opportunities include:
 
 * As assessment needs and formats evolve, make sure that information in existing assessments is maintained and migrated.
 * Where different assessing organizations (privacy, security, compliance, etc.) have overlapping needs, those organizations should collaborate to avoid redundancy by combining assessments, or making use of each others’ assessment data.
 
-## Collection should be…
+## Collection should be...
 
 ### ...minimum effort
 
@@ -79,17 +100,22 @@ If it’s generated as part of the assessment process, and it’s important, wri
 
 ## Collected information should be...
 
-### ...searchable/discoverable
+### ...searchable
 
-If the information is worth recording, it’s worth making it findable. (Recording the information in a structured format can be helpful.)
+If the information is worth recording, it’s worth making it easy to find. Recording the information in a structured format can make search easier to implement and use.
 
-### ...shown (only) when helpful
+### ...audience-appropriate
 
-Not all collected information needs to be presented to all viewers in all contexts. If an assessment has multiple audiences or use cases, this may also imply that it should have multiple views.
+Not all collected information needs to be presented to all viewers in all contexts. If an assessment has multiple audiences or use cases, perhaps it needs multiple views.
 
 ### ...interpretable
 
-"Self-explanatory" is better than "well-documented", and "well-documented" is better than "not documented" or "requires expert interpretation".
+In order of preference:
+
+1. self-explanatory
+1. well-documented
+1. requires expert interpretation
+1. undocumented
 
 ### ...verifiable
 
