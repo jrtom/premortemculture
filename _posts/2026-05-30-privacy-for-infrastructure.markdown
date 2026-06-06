@@ -132,7 +132,7 @@ In descending order of preference, this is what infrastructure per-client config
 
 We use a storage system as a motivating example in the sections below.
 
-### Zero configuration
+### zero configuration
 
 Infrastructure automatically performs all relevant privacy functions for all clients; no configuration is possible.
 
@@ -140,7 +140,7 @@ Infrastructure automatically performs all relevant privacy functions for all cli
 * retention timelines are enforced for all data
 * all aspects of data export are managed by infrastructure
 
-### Good stance by default
+### good stance by default
 
 Infrastructure does something conservatively appropriate for all clients, but provides configuration options.
 
@@ -148,7 +148,7 @@ Infrastructure does something conservatively appropriate for all clients, but pr
 * clients can override default retention timelines
 * clients can customize data export formats
 
-### Good stance requires per-client configuration
+### good stance requires per-client configuration
 
 Infrastructure can be configured to satisfy client needs.  
 
@@ -156,23 +156,22 @@ Infrastructure can be configured to satisfy client needs.
 * clients must opt into specify a deletion timeline, and describe the data to be deleted
 * clients must configure data export mechanisms and protocols
 
-### Good stance requires client-side implementation
+### good stance requires client-side implementation
 
 * clients must encrypt their own data
 * clients are responsible for keeping track of their data’s age and deleting it to meet retention requirements
 * clients must implement data export themselves
 
-### Good stance not possible
+### good stance not possible
 
-The infrastructure’s design does not support the client’s privacy goals.  This is not a value judgement, but it is important that infrastructure makes it clear what privacy goals it does not, or cannot, support so that prospective clients can make informed choices.
+The infrastructure’s design does not support the client’s privacy goals.  This is not a value judgement, but it is critical that infrastructure documents the privacy goals it does not, or cannot, support so that prospective clients can make informed choices.
 
 * infrastructure does not encrypt data, and required data format does not support client-side encryption
 * infrastructure does not provide client APIs for data deletion or export
 
 ## Change management
 
-Infrastructure systems sometimes need to make client-visible changes.  This can place a large burden on clients, especially if the changes affect per-client configuration or otherwise impact privacy guarantees in
-ways that clients have to compensate for.
+Infrastructure systems sometimes need to make client-visible changes.  This can place a large burden on clients, especially if the changes affect per-client configuration or otherwise impact privacy guarantees in ways that clients have to compensate for.
 
 Infrastructure with open/public APIs may not know who all of its clients are; this can limit its ability to understand and address its clients’ needs, and make change management very difficult.
 

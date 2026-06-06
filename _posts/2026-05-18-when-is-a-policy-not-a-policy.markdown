@@ -26,7 +26,7 @@ In either case, the change itself--whether to add an exception or update the pol
 
 Making such updates explicit and visible simplifies future uses of, and changes to, the policy. More importantly, however, it requires the people involved to be explicit about the nature of, and motivation for, the change.
 
-Notes:
+**what can possibly go wrong**
 
 * Explicit documentation may entail some difficult conversations, if the initially presented reason for the exception is “X wants to be able to do something that the policy prohibits”. **The more difficult the conversation, the more important it is to have it**.
-* If a policy gets too complex to be easily understood, it may be time to look into either simplifying it, or automating enforcement.
+* Policies that have been updated several times to incorporate edge cases can become too complex to be easily understood.  If that happens, consider simplifying it, or automating enforcement if possible.
