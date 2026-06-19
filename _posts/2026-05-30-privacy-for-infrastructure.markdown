@@ -59,7 +59,7 @@ Infrastructure may also perform data governance functions on behalf of its clien
 
 It’s important for infrastructure to document any data governance roles it may have, so that clients know what they can, and can’t, depend on infrastructure to handle for them.
 
-**what can possibly go wrong**
+**what can possibly go wrong?**
 
 * Serving infrastructure builds a model from client data to make serving more efficient; as a side effect, it predicts user behavior for clients that have user data.  The ads team gets access to this model, and starts using it for ads targeting, in contravention of the purpose limitations for this data.  Lawyers ensue.
 * Data processing infrastructure does not propagate annotations of data that pass through it from its inputs to its outputs.  This creates a hole in the affected clients’ data governance that they can’t easily patch.
@@ -76,10 +76,9 @@ Infrastructure that stores or serves client data may have internal access paths 
 
 Infrastructure that’s responsible for the fundamental building blocks of access control (e.g. cryptography, authentication/authorization checks, identity and access management) should be among the most carefully scrutinized.  Security review should catch most problems in this area, but their evaluation of risks may be different than privacy’s, and any integrations with data governance are likely to be more in privacy’s wheelhouse.
 
-**what can possibly go wrong**
+**what can possibly go wrong?**
 
 * Infrastructure team leaves access to their internal logs open to all of their clients. One client snoops on other clients’ logs, uses this for business advantage, and then a whistleblower in that client’s organization tells the media what happened and where the data came from.  Lawyers ensue.
-
 
 ### retention/deletion, data export, data updating
 
@@ -89,10 +88,10 @@ Since these functions (especially full deletion) can take time, infrastructure s
 
 All of this applies to primary data stores, caches, and backups.
 
-**what can possibly go wrong**
+**what can possibly go wrong?**
 
 * Infrastructure neither handles data export for its clients, nor empowers its clients to handle it.  All export requests (whether from users or in response to legal requests) have to be handled manually by the infrastructure team.
-* Infrastructure team decides to add a new backup system that covers all client data, and decides to keep backups around indefinitely because storage is cheap and they want to help their clients recover their data.  This places them out of compliance with retention deadlines for clients that handle privacy-relevant data.  Lawyers ensue.
+* Infrastructure adds a new backup system that covers all client data, and keeps backups around indefinitely because storage is cheap and they want to help their clients recover their data.  This places them out of compliance with retention deadlines for clients that handle privacy-relevant data.  Lawyers ensue.
 
 ### notice, consent, control
 
@@ -102,14 +101,22 @@ These don’t generally apply directly to infrastructure directly, but the infra
 * consent moments: what has the user consented to?
 * other controls, such as user-to-user sharing or blocking actions
 
+**what can possibly go wrong?**
+
+* Infrastructure does not support reading and writing consent state; each client implements its own consent storage and retrieval.
+    * An organization has multiple products that each allow customers to opt **out** of using their data for advertising and marketing, and records their decision.  Since each product has its own records, customers wishing to opt out of all such uses must opt out for each product.  This causes customer confusion and frustration.
+        * In response, the organization requires each product to respect "opt out" requests collected by other products (but does not mandate common storage); this increases maintenance costs for each product.
+    * Later, the organization allows customers to opt **in** to using their data to build AI models, adding further complexity to the consent state.  Some products misinterpret others' consent records, and build AI models using data from customers that have not opted in.  Lawyers ensue.
+
 ### aggregating and obscuring data
 
 This includes anonymization, pseudonymization, redaction, deidentification, and generating summary statistics.  As with access control mechanisms, these are both important to do consistently across your organization, and easy to do in a way that introduces subtle vulnerabilities, so ideally infrastructure will provide common solutions.
 
-**what can possibly go wrong**
+**what can possibly go wrong?**
 
-* Infrastructure does not provide an anonymization solution.  Clients use a mixture of strategies (mostly redaction) in an attempt to obscure the identities of their users; this makes data governance difficult and inconsistent across the organization.  A data scientist pulls together data from different clients and uses it to reidentify many users.
-
+* Infrastructure does not provide an anonymization solution; clients use a mixture of strategies (mostly redaction) in an attempt to obscure the identities of their users.
+    * This makes data governance difficult and inconsistent across the organization.
+    * A data scientist pulls together insufficiently anonymized data from different clients and uses it to reidentify users.
 
 ## Configuration
 
